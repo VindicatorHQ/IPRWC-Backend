@@ -26,7 +26,7 @@ public class UserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDTO createUser(@RequestBody @Valid UserDTO userDTO){
+    public UserDTO createUser(@RequestBody @Valid UserDTO userDTO) {
         User userRequest = userMapper.fromDTOToEntity(userDTO);
         User user = this.userDAO.saveToDatabase(userRequest);
 
@@ -35,14 +35,14 @@ public class UserController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<UserDTO> getAllUsers(){
+    public List<UserDTO> getAllUsers() {
         return userDAO.getAll().stream().map(userMapper::fromEntityToDTO)
                 .collect(Collectors.toList());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public UserDTO getUserByID(@PathVariable String id){
+    public UserDTO getUserByID(@PathVariable String id) {
         User user = this.userDAO.getById(id);
 
         return userMapper.fromEntityToDTO(user);
@@ -57,12 +57,13 @@ public class UserController {
     }
 
     @GetMapping(value = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserDTO getUserDetails(){
+    public UserDTO getUserDetails() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = this.userDAO.getByEmail(userDetails.getUsername());
 
         return userMapper.fromEntityToDTO(user);
     }
+
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public UserDTO updateUser(@PathVariable String id, @RequestBody UserDTO userDTO) {

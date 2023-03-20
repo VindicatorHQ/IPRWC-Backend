@@ -3,10 +3,12 @@ package com.webshop.webshopbackend.domain.DAO;
 import com.webshop.webshopbackend.domain.entity.Product;
 import com.webshop.webshopbackend.domain.repository.ProductRepository;
 import com.webshop.webshopbackend.exception.NotFound;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-public class ProductDAO implements DAO<Product>{
+@Component
+public class ProductDAO implements DAO<Product> {
     private final ProductRepository productRepository;
 
     public ProductDAO(ProductRepository productRepository) {
@@ -40,7 +42,7 @@ public class ProductDAO implements DAO<Product>{
 
     @Override
     public void delete(String id) throws NotFound {
-        if(productRepository.existsById(id))
+        if (productRepository.existsById(id))
             this.productRepository.deleteById(id);
         else {
             throw new NotFound("Product", id);

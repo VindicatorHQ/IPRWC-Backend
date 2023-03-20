@@ -6,7 +6,7 @@ import com.webshop.webshopbackend.domain.entity.Category;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CategoryMapper implements Mapper<Category, CategoryDTO>{
+public class CategoryMapper implements Mapper<Category, CategoryDTO> {
     private final CategoryDAO categoryDAO;
 
     public CategoryMapper(CategoryDAO categoryDAO) {
@@ -16,14 +16,14 @@ public class CategoryMapper implements Mapper<Category, CategoryDTO>{
     @Override
     public Category fromDTOToEntity(CategoryDTO categoryDTO) {
 
-        if ( categoryDTO == null ) {
+        if (categoryDTO == null) {
             return null;
         }
 
         Category category = new Category();
 
-        category.setId( categoryDTO.getId() );
-        category.setName( categoryDTO.getName() );
+        category.setId(categoryDTO.getId());
+        category.setName(categoryDTO.getName());
 
         return category;
     }
@@ -31,14 +31,14 @@ public class CategoryMapper implements Mapper<Category, CategoryDTO>{
     @Override
     public CategoryDTO fromEntityToDTO(Category category) {
 
-        if ( category == null ) {
+        if (category == null) {
             return null;
         }
 
         CategoryDTO categoryDTO = new CategoryDTO();
 
-        categoryDTO.setId( category.getId() );
-        categoryDTO.setName( category.getName() );
+        categoryDTO.setId(category.getId());
+        categoryDTO.setName(category.getName());
 
         return categoryDTO;
     }
@@ -46,7 +46,7 @@ public class CategoryMapper implements Mapper<Category, CategoryDTO>{
     @Override
     public Category fromIdToEntity(String id) {
 
-        if ( id == null ) {
+        if (id == null) {
             return null;
         }
 

@@ -22,7 +22,7 @@ public class CategoryController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public CategoryDTO createCategory(@RequestBody @Valid CategoryDTO categoryDTO){
+    public CategoryDTO createCategory(@RequestBody @Valid CategoryDTO categoryDTO) {
         Category categoryRequest = categoryMapper.fromDTOToEntity(categoryDTO);
         Category category = this.categoryDAO.saveToDatabase(categoryRequest);
 
@@ -31,14 +31,14 @@ public class CategoryController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<CategoryDTO> getAllCategories(){
+    public List<CategoryDTO> getAllCategories() {
         return categoryDAO.getAll().stream().map(categoryMapper::fromEntityToDTO)
                 .collect(Collectors.toList());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public CategoryDTO getCategoryById(@PathVariable String id){
+    public CategoryDTO getCategoryById(@PathVariable String id) {
         Category category = this.categoryDAO.getById(id);
 
         return categoryMapper.fromEntityToDTO(category);

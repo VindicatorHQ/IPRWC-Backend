@@ -3,10 +3,12 @@ package com.webshop.webshopbackend.domain.mapper;
 import com.webshop.webshopbackend.domain.DAO.OrderDAO;
 import com.webshop.webshopbackend.domain.DTO.OrderDTO;
 import com.webshop.webshopbackend.domain.entity.Order;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+@Component
 public class OrderMapper implements Mapper<Order, OrderDTO> {
 
     private final OrderDAO orderDAO;
@@ -19,7 +21,7 @@ public class OrderMapper implements Mapper<Order, OrderDTO> {
 
     @Override
     public Order fromDTOToEntity(OrderDTO orderDTO) throws ParseException {
-        if ( orderDTO == null ) {
+        if (orderDTO == null) {
             return null;
         }
 
@@ -27,10 +29,10 @@ public class OrderMapper implements Mapper<Order, OrderDTO> {
 
         Order order = new Order();
 
-        order.setUser( userMapper.fromIdToEntity( orderDTO.getUserId() ) );
-        order.setId( orderDTO.getId() );
+        order.setUser(userMapper.fromIdToEntity(orderDTO.getUserId()));
+        order.setId(orderDTO.getId());
 
-        String dateString = orderDTO.getDate() ;
+        String dateString = orderDTO.getDate();
         java.util.Date date = sdf.parse(dateString);
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         order.setDate(sqlDate);
@@ -40,7 +42,7 @@ public class OrderMapper implements Mapper<Order, OrderDTO> {
 
     @Override
     public OrderDTO fromEntityToDTO(Order order) {
-        if ( order == null ) {
+        if (order == null) {
             return null;
         }
 
@@ -48,16 +50,16 @@ public class OrderMapper implements Mapper<Order, OrderDTO> {
 
         OrderDTO orderDTO = new OrderDTO();
 
-        orderDTO.setId( order.getId() );
+        orderDTO.setId(order.getId());
         orderDTO.setDate(sdf.format(order.getDate()));
-        orderDTO.setUserId( order.getUser().getId() );
+        orderDTO.setUserId(order.getUser().getId());
 
         return orderDTO;
     }
 
     @Override
     public Order fromIdToEntity(String id) {
-        if ( id == null ) {
+        if (id == null) {
             return null;
         }
 

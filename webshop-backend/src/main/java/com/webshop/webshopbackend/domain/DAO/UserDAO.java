@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class UserDAO implements DAO<User>{
+public class UserDAO implements DAO<User> {
 
     private final UserRepository userRepository;
     private final VerificationTokenRepository verificationTokenRepository;
@@ -26,9 +26,9 @@ public class UserDAO implements DAO<User>{
 
     public User getByEmail(String email) throws NotFound {
         Optional<User> result = userRepository.findByEmail(email);
-        if(result.isPresent()) {
+        if (result.isPresent()) {
             return result.get();
-        }else {
+        } else {
             throw new NotFound("User", email);
         }
     }
@@ -55,7 +55,7 @@ public class UserDAO implements DAO<User>{
 
     @Override
     public void delete(String id) throws NotFound {
-        if(userRepository.existsById(id))
+        if (userRepository.existsById(id))
             this.userRepository.deleteById(id);
         else {
             throw new NotFound("User", id);

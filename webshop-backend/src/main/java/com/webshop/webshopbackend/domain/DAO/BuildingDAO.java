@@ -18,8 +18,8 @@ public class BuildingDAO implements DAO<Building> {
 
     @Override
     public Building getById(String id) throws NotFound {
-            return buildingRepository.findById(id)
-                    .orElseThrow(() -> new NotFound("Building", id));
+        return buildingRepository.findById(id)
+                .orElseThrow(() -> new NotFound("Building", id));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class BuildingDAO implements DAO<Building> {
 
     @Override
     public void delete(String id) throws NotFound {
-        if(buildingRepository.existsById(id))
+        if (buildingRepository.existsById(id))
             this.buildingRepository.deleteById(id);
         else {
             throw new NotFound("Building", id);

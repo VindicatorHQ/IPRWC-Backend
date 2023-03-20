@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -22,18 +19,18 @@ public class Building {
     private String id;
 
     @Column
-    @NotBlank(message="Zipcode cannot be empty.")
+    @NotBlank(message = "Zipcode cannot be empty.")
     private String zipcode;
 
     @Column
-    @NotBlank(message="City cannot be empty.")
+    @NotBlank(message = "City cannot be empty.")
     private String city;
 
     @Column
-    @NotBlank(message="Address cannot be empty.")
+    @NotBlank(message = "Address cannot be empty.")
     private String address;
 
     @Column
-    @NotBlank(message="Building name cannot be empty.")
+    @NotBlank(message = "Building name cannot be empty.")
     private String name;
 }

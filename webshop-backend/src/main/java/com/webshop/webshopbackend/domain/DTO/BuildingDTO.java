@@ -7,12 +7,12 @@ import lombok.Data;
 public class BuildingDTO {
 
     private String id;
-    @NotBlank(message="Zipcode cannot be empty.")
+    @NotBlank(message = "Zipcode cannot be empty.")
     private String zipcode;
-    @NotBlank(message="City cannot be empty.")
+    @NotBlank(message = "City cannot be empty.")
     private String city;
-    @NotBlank(message="Address cannot be empty.")
+    @NotBlank(message = "Address cannot be empty.")
     private String address;
-    @NotBlank(message="Building name cannot be empty.")
+    @NotBlank(message = "Building name cannot be empty.")
     private String name;
 }

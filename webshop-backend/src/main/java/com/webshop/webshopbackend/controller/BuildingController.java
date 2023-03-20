@@ -18,13 +18,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @RequestMapping(value = "/building")
 public class BuildingController {
-    
+
     private final BuildingDAO buildingDAO;
     private final BuildingMapper buildingMapper;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public BuildingDTO createBuilding(@RequestBody @Valid BuildingDTO buildingDTO){
+    public BuildingDTO createBuilding(@RequestBody @Valid BuildingDTO buildingDTO) {
         Building buildingRequest = buildingMapper.fromDTOToEntity(buildingDTO);
         Building building = this.buildingDAO.saveToDatabase(buildingRequest);
 
@@ -33,14 +33,14 @@ public class BuildingController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<BuildingDTO> getAllBuildings(){
+    public List<BuildingDTO> getAllBuildings() {
         return buildingDAO.getAll().stream().map(buildingMapper::fromEntityToDTO)
                 .collect(Collectors.toList());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public BuildingDTO getBuildingByID(@PathVariable String id){
+    public BuildingDTO getBuildingByID(@PathVariable String id) {
         Building building = this.buildingDAO.getById(id);
 
         return buildingMapper.fromEntityToDTO(building);

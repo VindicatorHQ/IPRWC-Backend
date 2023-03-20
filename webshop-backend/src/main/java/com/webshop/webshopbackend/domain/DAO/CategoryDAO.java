@@ -3,10 +3,12 @@ package com.webshop.webshopbackend.domain.DAO;
 import com.webshop.webshopbackend.domain.entity.Category;
 import com.webshop.webshopbackend.domain.repository.CategoryRepository;
 import com.webshop.webshopbackend.exception.NotFound;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-public class CategoryDAO implements DAO<Category>{
+@Component
+public class CategoryDAO implements DAO<Category> {
     private final CategoryRepository categoryRepository;
 
     public CategoryDAO(CategoryRepository categoryRepository) {
@@ -35,7 +37,7 @@ public class CategoryDAO implements DAO<Category>{
 
     @Override
     public void delete(String id) throws NotFound {
-        if(categoryRepository.existsById(id))
+        if (categoryRepository.existsById(id))
             this.categoryRepository.deleteById(id);
         else {
             throw new NotFound("Category", id);

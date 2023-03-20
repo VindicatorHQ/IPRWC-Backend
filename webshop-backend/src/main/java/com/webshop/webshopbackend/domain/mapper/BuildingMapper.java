@@ -17,17 +17,17 @@ public class BuildingMapper implements Mapper<Building, BuildingDTO> {
     @Override
     public Building fromDTOToEntity(BuildingDTO buildingDTO) {
 
-        if ( buildingDTO == null ) {
+        if (buildingDTO == null) {
             return null;
         }
 
         Building building = new Building();
 
-        building.setId( buildingDTO.getId() );
-        building.setZipcode( buildingDTO.getZipcode() );
-        building.setCity( buildingDTO.getCity() );
-        building.setAddress( buildingDTO.getAddress() );
-        building.setName( buildingDTO.getName() );
+        building.setId(buildingDTO.getId());
+        building.setZipcode(buildingDTO.getZipcode());
+        building.setCity(buildingDTO.getCity());
+        building.setAddress(buildingDTO.getAddress());
+        building.setName(buildingDTO.getName());
 
         return building;
     }
@@ -35,7 +35,7 @@ public class BuildingMapper implements Mapper<Building, BuildingDTO> {
     @Override
     public BuildingDTO fromEntityToDTO(Building building) {
 
-        if ( building == null ) {
+        if (building == null) {
             return null;
         }
 
@@ -53,7 +53,7 @@ public class BuildingMapper implements Mapper<Building, BuildingDTO> {
     @Override
     public Building fromIdToEntity(String id) {
 
-        if ( id == null ) {
+        if (id == null) {
             return null;
         }
 

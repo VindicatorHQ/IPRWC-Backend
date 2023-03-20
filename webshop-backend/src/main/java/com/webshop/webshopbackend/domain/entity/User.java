@@ -10,7 +10,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,20 +30,20 @@ public class User implements UserDetails {
     private String id;
 
     @Column
-    @NotBlank(message="First name cannot be empty.")
+    @NotBlank(message = "First name cannot be empty.")
     private String name;
 
     @Column
-    @NotBlank(message="Last name cannot be empty.")
+    @NotBlank(message = "Last name cannot be empty.")
     private String lastName;
 
     @Column
-    @NotBlank(message="Email cannot be empty.")
-    @Email(message="Email is invalid.")
+    @NotBlank(message = "Email cannot be empty.")
+    @Email(message = "Email is invalid.")
     private String email;
 
     @Column
-    @NotBlank(message="Password cannot be empty.")
+    @NotBlank(message = "Password cannot be empty.")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
@@ -53,8 +56,8 @@ public class User implements UserDetails {
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     @ToString.Exclude
-    @OneToMany(mappedBy = "order", orphanRemoval = true)
-    private Set<Order> orders = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    private Set<Order> product_order = new LinkedHashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

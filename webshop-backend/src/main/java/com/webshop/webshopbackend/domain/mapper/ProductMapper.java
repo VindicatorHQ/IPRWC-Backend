@@ -3,7 +3,9 @@ package com.webshop.webshopbackend.domain.mapper;
 import com.webshop.webshopbackend.domain.DAO.ProductDAO;
 import com.webshop.webshopbackend.domain.DTO.ProductDTO;
 import com.webshop.webshopbackend.domain.entity.Product;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductMapper implements Mapper<Product, ProductDTO> {
 
     private final ProductDAO productDAO;
@@ -15,16 +17,16 @@ public class ProductMapper implements Mapper<Product, ProductDTO> {
     @Override
     public Product fromDTOToEntity(ProductDTO productDTO) {
 
-        if ( productDTO == null ) {
+        if (productDTO == null) {
             return null;
         }
 
         Product product = new Product();
 
-        product.setId( productDTO.getId() );
-        product.setName( productDTO.getName() );
-        product.setStock( productDTO.getStock() );
-        product.setPrice( productDTO.getPrice() );
+        product.setId(productDTO.getId());
+        product.setName(productDTO.getName());
+        product.setStock(productDTO.getStock());
+        product.setPrice(productDTO.getPrice());
 
         return product;
     }
@@ -32,7 +34,7 @@ public class ProductMapper implements Mapper<Product, ProductDTO> {
     @Override
     public ProductDTO fromEntityToDTO(Product product) {
 
-        if ( product == null ) {
+        if (product == null) {
             return null;
         }
 
@@ -49,7 +51,7 @@ public class ProductMapper implements Mapper<Product, ProductDTO> {
     @Override
     public Product fromIdToEntity(String id) {
 
-        if ( id == null ) {
+        if (id == null) {
             return null;
         }
 

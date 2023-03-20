@@ -23,7 +23,7 @@ public class ProductController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductDTO createProduct(@RequestBody @Valid ProductDTO productDTO){
+    public ProductDTO createProduct(@RequestBody @Valid ProductDTO productDTO) {
         Product productRequest = productMapper.fromDTOToEntity(productDTO);
         Product product = this.productDAO.saveToDatabase(productRequest);
 
@@ -32,14 +32,14 @@ public class ProductController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductDTO> getAllProducts(){
+    public List<ProductDTO> getAllProducts() {
         return productDAO.getAll().stream().map(productMapper::fromEntityToDTO)
                 .collect(Collectors.toList());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ProductDTO getProductById(@PathVariable String id){
+    public ProductDTO getProductById(@PathVariable String id) {
         Product product = this.productDAO.getById(id);
 
         return productMapper.fromEntityToDTO(product);

@@ -21,12 +21,12 @@ public class Category {
     private String id;
 
     @Column
-    @NotBlank(message="Category name cannot be empty.")
+    @NotBlank(message = "Category name cannot be empty.")
     private String name;
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     @ToString.Exclude
-    @OneToMany(mappedBy = "product", orphanRemoval = true)
+    @OneToMany(mappedBy = "category", orphanRemoval = true)
     private Set<Product> products = new LinkedHashSet<>();
 }

@@ -14,7 +14,7 @@ import java.util.Set;
 @Setter
 @ToString
 @Entity
-@Table(name = "product_orders")
+@Table(name = "product_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -27,7 +27,7 @@ public class Order {
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     @ToString.Exclude
-    @OneToMany(mappedBy = "product", orphanRemoval = true)
+    @OneToMany(mappedBy = "order", orphanRemoval = true)
     private Set<Product> products = new LinkedHashSet<>();
 
     @ManyToOne

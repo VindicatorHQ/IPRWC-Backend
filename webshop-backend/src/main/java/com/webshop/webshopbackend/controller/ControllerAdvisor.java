@@ -123,7 +123,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(java.lang.Exception.class)
     @ResponseBody
-    public Exception handleServerError()   {
+    public Exception handleServerError() {
         return new Exception(
                 LocalDateTime.now().toString(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),

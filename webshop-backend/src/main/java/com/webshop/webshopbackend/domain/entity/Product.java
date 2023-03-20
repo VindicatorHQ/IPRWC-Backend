@@ -18,15 +18,15 @@ public class Product {
     private String id;
 
     @Column
-    @NotBlank(message="Product name cannot be empty.")
+    @NotBlank(message = "Product name cannot be empty.")
     private String name;
 
     @Column
-    @NotBlank(message="Product stock cannot be empty.")
+    @NotBlank(message = "Product stock cannot be empty.")
     private int stock;
 
     @Column
-    @NotBlank(message="Product price cannot be empty.")
+    @NotBlank(message = "Product price cannot be empty.")
     private double price;
 
     @ManyToOne
@@ -34,6 +34,6 @@ public class Product {
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "product_order_id")
     private Order order;
 }

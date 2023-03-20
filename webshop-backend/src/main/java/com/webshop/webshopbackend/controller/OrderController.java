@@ -34,14 +34,14 @@ public class OrderController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<OrderDTO> getAllOrders(){
+    public List<OrderDTO> getAllOrders() {
         return orderDAO.getAll().stream().map(orderMapper::fromEntityToDTO)
                 .collect(Collectors.toList());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public OrderDTO getOrderById(@PathVariable String id){
+    public OrderDTO getOrderById(@PathVariable String id) {
         Order order = this.orderDAO.getById(id);
 
         return orderMapper.fromEntityToDTO(order);
@@ -49,7 +49,7 @@ public class OrderController {
 
     @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<Object> searchOrders(@RequestParam(name="user", required = false) String user) {
+    public List<Object> searchOrders(@RequestParam(name = "user", required = false) String user) {
         List<Order> searchedOrders;
 
         if (user != null) {

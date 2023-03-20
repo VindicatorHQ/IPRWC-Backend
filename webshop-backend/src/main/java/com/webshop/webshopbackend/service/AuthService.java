@@ -32,7 +32,7 @@ public class AuthService {
     private final ApplicationEventPublisher eventPublisher;
 
     public void register(RegisterRequest registerRequest, HttpServletRequest request) throws Conflict {
-        if(userDAO.existsByEmail(registerRequest.getEmail())) {
+        if (userDAO.existsByEmail(registerRequest.getEmail())) {
             throw new Conflict("User", "email");
         } else {
             User user = User.builder()
