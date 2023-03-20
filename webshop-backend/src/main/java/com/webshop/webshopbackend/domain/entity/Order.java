@@ -1,9 +1,9 @@
 package com.webshop.webshopbackend.domain.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.sql.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -14,19 +14,22 @@ import java.util.Set;
 @Setter
 @ToString
 @Entity
-public class Category {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false, columnDefinition = "VARCHAR(36)")
     private String id;
 
-    @Column
-    @NotBlank(message="Category name cannot be empty.")
-    private String name;
+    @Column(nullable = false)
+    private Date date;
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     @ToString.Exclude
     @OneToMany(mappedBy = "product", orphanRemoval = true)
     private Set<Product> products = new LinkedHashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
