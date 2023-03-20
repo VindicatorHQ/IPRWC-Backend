@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class OrderDAO implements DAO<Order>{
+public class OrderDAO implements DAO<Order> {
     private final OrderRepository orderRepository;
 
     public OrderDAO(OrderRepository orderRepository) {
@@ -39,7 +39,7 @@ public class OrderDAO implements DAO<Order>{
 
     @Override
     public void delete(String id) throws NotFound {
-        if(orderRepository.existsById(id))
+        if (orderRepository.existsById(id))
             this.orderRepository.deleteById(id);
         else {
             throw new NotFound("Order", id);

@@ -9,7 +9,7 @@ import lombok.Data;
 public class OrderDTO {
     private String id;
     @NotNull(message = "Date cannot be empty.")
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private String date;
     @NotBlank(message = "User id cannot be empty.")
     private String userId;

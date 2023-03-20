@@ -1,8 +1,10 @@
 package com.webshop.webshopbackend.common.util;
 
 import com.google.common.hash.Hashing;
-import com.webshop.webshopbackend.domain.DAO.*;
-import com.webshop.webshopbackend.domain.entity.*;
+import com.webshop.webshopbackend.domain.DAO.BuildingDAO;
+import com.webshop.webshopbackend.domain.DAO.UserDAO;
+import com.webshop.webshopbackend.domain.entity.Building;
+import com.webshop.webshopbackend.domain.entity.User;
 import com.webshop.webshopbackend.domain.model.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,9 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.time.LocalDate;
 
 @Component
 @RequiredArgsConstructor
@@ -39,9 +38,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                 .email(email)
                 .password(
                         passwordEncoder.encode(
-                        Hashing.sha256()
-                        .hashString(password, StandardCharsets.UTF_8)
-                        .toString())
+                                Hashing.sha256()
+                                        .hashString(password, StandardCharsets.UTF_8)
+                                        .toString())
                 )
                 .enabled(true)
                 .role(Role.ADMIN)

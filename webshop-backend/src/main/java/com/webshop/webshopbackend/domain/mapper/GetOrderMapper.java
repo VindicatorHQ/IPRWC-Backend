@@ -8,44 +8,44 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class GetOrderMapper implements Mapper<Order, GetOrderDTO>{
+public class GetOrderMapper implements Mapper<Order, GetOrderDTO> {
 
     private final OrderDAO orderDAO;
     private final UserMapper userMapper;
 
     @Override
     public Order fromDTOToEntity(GetOrderDTO orderDTO) {
-        if ( orderDTO == null ) {
+        if (orderDTO == null) {
             return null;
         }
 
         Order order = new Order();
 
-        order.setUser( userMapper.fromIdToEntity( orderDTO.getUserId() ) );
-        order.setId( orderDTO.getId() );
-        order.setDate( orderDTO.getDate() );
+        order.setUser(userMapper.fromIdToEntity(orderDTO.getUserId()));
+        order.setId(orderDTO.getId());
+        order.setDate(orderDTO.getDate());
 
         return order;
     }
 
     @Override
     public GetOrderDTO fromEntityToDTO(Order order) {
-        if ( order == null ) {
+        if (order == null) {
             return null;
         }
 
         GetOrderDTO orderDTO = new GetOrderDTO();
 
-        orderDTO.setId( order.getId() );
-        orderDTO.setDate( order.getDate() );
-        orderDTO.setUsername( order.getUser().getName());
+        orderDTO.setId(order.getId());
+        orderDTO.setDate(order.getDate());
+        orderDTO.setUsername(order.getUser().getName());
 
         return orderDTO;
     }
 
     @Override
     public Order fromIdToEntity(String id) {
-        if ( id == null ) {
+        if (id == null) {
             return null;
         }
 
