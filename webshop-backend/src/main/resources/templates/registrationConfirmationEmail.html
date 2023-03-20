@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US">
+<head>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato|Lato:i,b,bi">
+    <title>Registration Confirmation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+
+        a{
+            text-decoration: underline;
+            font-weight: bold;
+            color: #253342;
+        }
+
+        h1 {
+            font-size: 56px;
+        }
+
+        h2{
+            font-size: 28px;
+            font-weight: 900;
+        }
+
+        p {
+            font-weight: 100;
+        }
+
+        td {
+            vertical-align: top;
+        }
+
+        #email {
+            margin: auto;
+            width: 600px;
+            background-color: white;
+        }
+
+        table {
+            text-align: center;
+        }
+
+        .button {
+            font: inherit;
+            background-color: #3f51b5;
+            border: none;
+            padding: 10px;
+            font-weight: 900;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            box-shadow: 3px 3px #2f3a82;
+        }
+    </style>
+
+</head>
+
+<body bgcolor="#F5F8FA" style="width: 100%; margin: auto 0; padding:0; font-family:Lato, sans-serif; font-size:18px; color:#33475B; word-break:break-word">
+
+
+<div id="email">
+    <table th:fragment="header" width="100%">
+        <tr>
+            <td bgcolor="#00A4BD" align="center" style="color: white;
+background: linear-gradient(270deg,#5236ab 0%,#e41937 100%);">
+                <img src="https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P3A00000i64QnUAI" style="margin-top: 25px; margin-bottom: 25px; transform: scale(0.7)" alt="CGI logo">
+            </td>
+    </table>
+    <table th:fragment="body" border="0" cellpadding="0" cellspacing="10px" style="padding: 30px 30px 30px 60px;">
+        <tr>
+            <td>
+                <h1 th:text="'Hello, ' + ${name} + '. Welcome to our application!'"></h1>
+                <h3> Thank you for registering with us.</h3>
+                <p>
+                    Please click the button below to confirm your email address and activate your account:
+                </p>
+                <a class="button" style="color: white; text-decoration: none;" th:href="${confirmationUrl}">
+                    Confirm Email
+                </a>
+            </td>
+        </tr>
+    </table>
+    <table th:fragment="footer" bgcolor="#EAF0F6" width="100%" style="margin-top: 50px;" >
+        <tr>
+            <td align="center" style="padding: 30px 30px;">
+                <p>If you have any issues with the button, please copy and paste the following link into your browser:</p>
+                <p th:text="${{confirmationUrl}}"></p>
+                <p>Thank you for using our application!</p>
+                <p>CGI Team</p>
+                <a href="https://www.cgi.com/en/form/how-can-we-help">
+                    Contact us
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
