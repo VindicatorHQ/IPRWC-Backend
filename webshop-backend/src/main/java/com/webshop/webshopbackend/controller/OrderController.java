@@ -3,6 +3,7 @@ package com.webshop.webshopbackend.controller;
 import com.webshop.webshopbackend.domain.DAO.OrderDAO;
 import com.webshop.webshopbackend.domain.DTO.OrderDTO;
 import com.webshop.webshopbackend.domain.entity.Order;
+import com.webshop.webshopbackend.domain.mapper.GetOrderMapper;
 import com.webshop.webshopbackend.domain.mapper.OrderMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class OrderController {
     private final OrderDAO orderDAO;
     private final OrderMapper orderMapper;
+    private final GetOrderMapper getOrderMapper;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
@@ -32,7 +34,7 @@ public class OrderController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<OrderDTO> getAllCategories(){
+    public List<OrderDTO> getAllOrders(){
         return orderDAO.getAll().stream().map(orderMapper::fromEntityToDTO)
                 .collect(Collectors.toList());
     }
@@ -43,6 +45,24 @@ public class OrderController {
         Order order = this.orderDAO.getById(id);
 
         return orderMapper.fromEntityToDTO(order);
+    }
+
+    @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object> searchOrders(@RequestParam(name="user", required = false) String user) {
+        List<Order> searchedOrders;
+
+        if (user != null) {
+            searchedOrders = this.orderDAO.getByUser(user);
+
+            return searchedOrders.stream().map(getOrderMapper::fromEntityToDTO)
+                    .collect(Collectors.toList());
+        } else {
+            searchedOrders = this.orderDAO.getAll();
+        }
+
+        return searchedOrders.stream().map(orderMapper::fromEntityToDTO)
+                .collect(Collectors.toList());
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -62,5 +82,4 @@ public class OrderController {
 
         return "Order deleted.";
     }
-
 }

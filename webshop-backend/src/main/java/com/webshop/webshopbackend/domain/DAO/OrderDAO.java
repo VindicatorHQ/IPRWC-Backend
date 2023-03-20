@@ -33,6 +33,7 @@ public class OrderDAO implements DAO<Order>{
 
         order.setDate(orderRequest.getDate());
         order.setUser(orderRequest.getUser());
+
         return orderRepository.save(order);
     }
 
@@ -50,4 +51,7 @@ public class OrderDAO implements DAO<Order>{
         return this.orderRepository.findAll();
     }
 
+    public List<Order> getByUser(String id) {
+        return this.orderRepository.findByUserId(id);
+    }
 }

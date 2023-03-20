@@ -50,9 +50,11 @@ public class User implements UserDetails {
     @Column
     private boolean enabled;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "order", orphanRemoval = true)
+    private Set<Order> orders = new LinkedHashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

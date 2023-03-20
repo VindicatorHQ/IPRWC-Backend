@@ -14,6 +14,7 @@ import java.util.Set;
 @Setter
 @ToString
 @Entity
+@Table(name = "product_orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
