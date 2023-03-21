@@ -1,8 +1,10 @@
 package com.webshop.webshopbackend.controller;
 
 import com.webshop.webshopbackend.domain.DAO.ProductDAO;
+import com.webshop.webshopbackend.domain.DTO.GetProductDTO;
 import com.webshop.webshopbackend.domain.DTO.ProductDTO;
 import com.webshop.webshopbackend.domain.entity.Product;
+import com.webshop.webshopbackend.domain.mapper.GetProductMapper;
 import com.webshop.webshopbackend.domain.mapper.ProductMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
 public class ProductController {
     private final ProductDAO productDAO;
     private final ProductMapper productMapper;
+    private final GetProductMapper getProductMapper;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
@@ -43,6 +46,24 @@ public class ProductController {
         Product product = this.productDAO.getById(id);
 
         return productMapper.fromEntityToDTO(product);
+    }
+
+    @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<Object> searchProducts(@RequestParam(name = "category", required = false) String category) {
+        List<Product> searchedProducts;
+
+        if (category != null) {
+            searchedProducts = this.productDAO.getByCategory(category);
+
+            return searchedProducts.stream().map(getProductMapper::fromEntityToDTO)
+                    .collect(Collectors.toList());
+        } else {
+            searchedProducts = this.productDAO.getAll();
+        }
+
+        return searchedProducts.stream().map(productMapper::fromEntityToDTO)
+                .collect(Collectors.toList());
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

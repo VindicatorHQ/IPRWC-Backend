@@ -54,4 +54,7 @@ public class ProductDAO implements DAO<Product> {
         return this.productRepository.findAll();
     }
 
+    public List<Product> getByCategory(String id) {
+        return this.productRepository.findByCategoryId(id);
+    }
 }

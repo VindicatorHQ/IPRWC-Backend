@@ -9,7 +9,7 @@ import java.sql.Date;
 @Data
 public class GetOrderDTO {
     private String id;
-    @NotNull(message = "Date in cannot be empty.")
+    @NotNull(message = "Date cannot be empty.")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private String username;
