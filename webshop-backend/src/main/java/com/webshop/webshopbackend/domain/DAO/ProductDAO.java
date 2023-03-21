@@ -34,7 +34,6 @@ public class ProductDAO implements DAO<Product> {
         product.setName(productRequest.getName());
         product.setStock(productRequest.getStock());
         product.setPrice(productRequest.getPrice());
-        product.setOrder(productRequest.getOrder());
         product.setImageName(productRequest.getImageName());
         product.setDescription(productRequest.getDescription());
         product.setCategory(productRequest.getCategory());

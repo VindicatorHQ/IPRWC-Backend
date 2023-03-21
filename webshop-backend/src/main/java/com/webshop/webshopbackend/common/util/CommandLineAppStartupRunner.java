@@ -2,8 +2,12 @@ package com.webshop.webshopbackend.common.util;
 
 import com.google.common.hash.Hashing;
 import com.webshop.webshopbackend.domain.DAO.BuildingDAO;
+import com.webshop.webshopbackend.domain.DAO.CategoryDAO;
+import com.webshop.webshopbackend.domain.DAO.ProductDAO;
 import com.webshop.webshopbackend.domain.DAO.UserDAO;
 import com.webshop.webshopbackend.domain.entity.Building;
+import com.webshop.webshopbackend.domain.entity.Category;
+import com.webshop.webshopbackend.domain.entity.Product;
 import com.webshop.webshopbackend.domain.entity.User;
 import com.webshop.webshopbackend.domain.model.Role;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +24,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     private final UserDAO userDAO;
     private final BuildingDAO buildingDAO;
+    private final CategoryDAO categoryDAO;
+    private final ProductDAO productDAO;
     private final BCryptPasswordEncoder passwordEncoder;
     @Value("${admin.name}")
     private String name;
@@ -68,6 +74,56 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                         .address("George Hintzenweg 83")
                         .zipcode("3068AX")
                         .city("Rotterdam")
+                        .build()
+                );
+
+        Category category1 =
+                categoryDAO.saveToDatabase(Category.builder()
+                        .name("Lost Fart")
+                        .build()
+                );
+
+        Product productMeme1 =
+                productDAO.saveToDatabase(Product.builder()
+                        .name("Destroyer")
+                        .description("Big bonky boi do be bonking you mama")
+                        .imageName("Destroyer.jpg")
+                        .stock(3)
+                        .price(20.00)
+                        .category(category1)
+                        .build()
+                );
+
+        Product productMeme2 =
+                productDAO.saveToDatabase(Product.builder()
+                        .name("Summoner")
+                        .description("Summoning on deez nuts ha got em")
+                        .imageName("Summoner.jpg")
+                        .stock(69)
+                        .price(5.00)
+                        .category(category1)
+                        .build()
+                );
+
+        Product productMeme3 =
+                productDAO.saveToDatabase(Product.builder()
+                        .name("Scouter")
+                        .description("Robot transform be like BZZZ BZZZ KABOOM LASAAAAH FIRING")
+                        .imageName("Scouter.jpg")
+                        .stock(420)
+                        .price(10.11)
+                        .category(category1)
+                        .build()
+                );
+
+        Product productMeme4 =
+                productDAO.saveToDatabase(Product.builder()
+                        .name("Reaper")
+                        .description("Deadge life be like")
+                        .imageName("Reaper.jpg")
+                        .stock(4)
+                        .price(1.69)
+                        .category(category1)
                         .build()
                 );
     }

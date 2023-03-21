@@ -24,11 +24,9 @@ public class Order {
     @Column(nullable = false)
     private Date date;
 
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
-    @ToString.Exclude
-    @OneToMany(mappedBy = "order", orphanRemoval = true)
-    private Set<Product> products = new LinkedHashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

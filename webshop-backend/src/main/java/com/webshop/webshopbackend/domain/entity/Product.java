@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -28,19 +31,19 @@ public class Product {
     @NotBlank(message = "Product imageName cannot be empty.")
     private String imageName;
 
-    @Column
-    @NotBlank(message = "Product stock cannot be empty.")
+    @Column(columnDefinition = "integer default 0")
     private int stock;
 
-    @Column
-    @NotBlank(message = "Product price cannot be empty.")
+    @Column(columnDefinition = "double default 1.00")
     private double price;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "product_order_id")
-    private Order order;
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "product", orphanRemoval = true)
+    private Set<Order> orders = new LinkedHashSet<>();
 }
