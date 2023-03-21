@@ -29,16 +29,16 @@ public class VerificationToken {
 
     private Date expiryDate;
 
+    public VerificationToken(String token, User user) {
+        this.token = token;
+        this.user = user;
+        this.expiryDate = calculateExpiryDate();
+    }
+
     private Date calculateExpiryDate() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Timestamp(cal.getTime().getTime()));
         cal.add(Calendar.MINUTE, VerificationToken.EXPIRATION);
         return new Date(cal.getTime().getTime());
-    }
-
-    public VerificationToken(String token, User user) {
-        this.token = token;
-        this.user = user;
-        this.expiryDate = calculateExpiryDate();
     }
 }

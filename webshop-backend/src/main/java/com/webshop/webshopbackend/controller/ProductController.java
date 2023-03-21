@@ -1,7 +1,6 @@
 package com.webshop.webshopbackend.controller;
 
 import com.webshop.webshopbackend.domain.DAO.ProductDAO;
-import com.webshop.webshopbackend.domain.DTO.GetProductDTO;
 import com.webshop.webshopbackend.domain.DTO.ProductDTO;
 import com.webshop.webshopbackend.domain.entity.Product;
 import com.webshop.webshopbackend.domain.mapper.GetProductMapper;

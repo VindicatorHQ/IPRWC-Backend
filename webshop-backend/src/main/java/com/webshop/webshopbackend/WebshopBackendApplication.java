@@ -10,13 +10,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class WebshopBackendApplication {
 
+    public static void main(String[] args) {
+        SpringApplication.run(WebshopBackendApplication.class, args);
+    }
+
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(WebshopBackendApplication.class, args);
     }
 
 }

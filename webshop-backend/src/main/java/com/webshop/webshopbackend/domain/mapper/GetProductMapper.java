@@ -8,9 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class GetProductMapper implements Mapper<Product, GetProductDTO>{
+public class GetProductMapper implements Mapper<Product, GetProductDTO> {
     private final ProductDAO productDAO;
-    private final CategoryMapper categoryMapper;
 
     @Override
     public Product fromDTOToEntity(GetProductDTO productDTO) {
@@ -24,6 +23,8 @@ public class GetProductMapper implements Mapper<Product, GetProductDTO>{
         product.setName(productDTO.getName());
         product.setPrice(productDTO.getPrice());
         product.setStock(productDTO.getStock());
+        product.setImageName(productDTO.getImageName());
+        product.setDescription(productDTO.getDescription());
 
         return product;
     }
@@ -40,6 +41,8 @@ public class GetProductMapper implements Mapper<Product, GetProductDTO>{
         productDTO.setName(product.getName());
         productDTO.setPrice(product.getPrice());
         productDTO.setStock(product.getStock());
+        productDTO.setImageName(product.getImageName());
+        productDTO.setDescription(product.getDescription());
         productDTO.setCategoryName(product.getCategory().getName());
 
         return productDTO;

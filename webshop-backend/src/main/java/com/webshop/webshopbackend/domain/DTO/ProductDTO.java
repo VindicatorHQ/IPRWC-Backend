@@ -10,6 +10,11 @@ public class ProductDTO {
     @NotBlank(message = "Product name cannot be empty.")
     private String name;
 
+    @NotBlank(message = "Product imageName cannot be empty.")
+    private String imageName;
+
+    private String description;
+
     @NotBlank(message = "Product stock cannot be empty.")
     private int stock;
 
