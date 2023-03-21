@@ -1,6 +1,5 @@
 package com.webshop.webshopbackend.service;
 
-
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;

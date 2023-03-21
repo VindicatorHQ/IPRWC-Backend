@@ -42,7 +42,7 @@ public class JWTUtil {
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setIssuer("CGI Werkplekken App")
+                .setIssuer("Webshop Le Meme")
                 .setExpiration(new Date(System.currentTimeMillis() + 86400000))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();

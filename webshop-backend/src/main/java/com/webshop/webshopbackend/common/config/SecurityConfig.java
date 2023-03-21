@@ -40,46 +40,29 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/auth/**").permitAll()
 
-                        .requestMatchers(HttpMethod.GET, "/reservation/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.POST, "/reservation/**").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
-                        .requestMatchers(HttpMethod.DELETE, "/reservation/**").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
-                        .requestMatchers(HttpMethod.PUT, "/reservation/**").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
-
                         .requestMatchers(HttpMethod.GET, "/user/info").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
                         .requestMatchers(HttpMethod.GET, "/user/**").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
                         .requestMatchers(HttpMethod.POST, "/user/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.DELETE, "/user/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.PUT, "/user/**").hasAuthority(Role.ADMIN.name())
 
-                        .requestMatchers(HttpMethod.GET, "/meeting/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.POST, "/meeting/**").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
-                        .requestMatchers(HttpMethod.DELETE, "/meeting/**").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
-                        .requestMatchers(HttpMethod.PUT, "/meeting/**").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
-
                         .requestMatchers(HttpMethod.GET, "/building/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
                         .requestMatchers(HttpMethod.POST, "/building/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.DELETE, "/building/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.PUT, "/building/**").hasAuthority(Role.ADMIN.name())
 
-                        .requestMatchers(HttpMethod.GET, "/workspace/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.POST, "/workspace/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.DELETE, "/workspace/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.PUT, "/workspace/**").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.POST, "/product/**").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.DELETE, "/product/**").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.PUT, "/product/**").hasAuthority(Role.ADMIN.name())
 
-                        .requestMatchers(HttpMethod.GET, "/meeting-room/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.POST, "/meeting-room/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.DELETE, "/meeting-room/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.PUT, "/meeting-room/**").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.GET, "/order/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.POST, "/order/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.DELETE, "/order/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.PUT, "/order/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
 
-                        .requestMatchers(HttpMethod.GET, "/floor/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.POST, "/floor/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.DELETE, "/floor/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.PUT, "/floor/**").hasAuthority(Role.ADMIN.name())
-
-                        .requestMatchers(HttpMethod.GET, "/facility/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.POST, "/facility/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.DELETE, "/facility/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.PUT, "/facility/**").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.POST, "/category/**").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.DELETE, "/category/**").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.PUT, "/category/**").hasAuthority(Role.ADMIN.name())
 
                         .anyRequest().authenticated()
                 )

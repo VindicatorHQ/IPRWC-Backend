@@ -10,8 +10,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @Configuration
 public class WebConfig {
-
-
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
