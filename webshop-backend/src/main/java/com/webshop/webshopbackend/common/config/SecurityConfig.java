@@ -39,9 +39,10 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/product/**").permitAll()
 
-                        .requestMatchers(HttpMethod.GET, "/user/info").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
-                        .requestMatchers(HttpMethod.GET, "/user/**").hasAnyAuthority(Role.ADMIN.name(), Role.USER.name())
+                        .requestMatchers(HttpMethod.GET, "/user/info").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.GET, "/user/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
                         .requestMatchers(HttpMethod.POST, "/user/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.DELETE, "/user/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.PUT, "/user/**").hasAuthority(Role.ADMIN.name())
