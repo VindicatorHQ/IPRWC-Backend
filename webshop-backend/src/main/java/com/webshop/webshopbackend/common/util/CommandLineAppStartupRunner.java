@@ -1,11 +1,9 @@
 package com.webshop.webshopbackend.common.util;
 
 import com.google.common.hash.Hashing;
-import com.webshop.webshopbackend.domain.DAO.BuildingDAO;
 import com.webshop.webshopbackend.domain.DAO.CategoryDAO;
 import com.webshop.webshopbackend.domain.DAO.ProductDAO;
 import com.webshop.webshopbackend.domain.DAO.UserDAO;
-import com.webshop.webshopbackend.domain.entity.Building;
 import com.webshop.webshopbackend.domain.entity.Category;
 import com.webshop.webshopbackend.domain.entity.Product;
 import com.webshop.webshopbackend.domain.entity.User;
@@ -23,7 +21,6 @@ import java.nio.charset.StandardCharsets;
 public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     private final UserDAO userDAO;
-    private final BuildingDAO buildingDAO;
     private final CategoryDAO categoryDAO;
     private final ProductDAO productDAO;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -67,15 +64,6 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                 .role(Role.USER)
                 .build();
         userDAO.saveToDatabase(johnDoe);
-
-        Building building =
-                buildingDAO.saveToDatabase(Building.builder()
-                        .name("CGI Rotterdam")
-                        .address("George Hintzenweg 83")
-                        .zipcode("3068AX")
-                        .city("Rotterdam")
-                        .build()
-                );
 
         Category category1 =
                 categoryDAO.saveToDatabase(Category.builder()

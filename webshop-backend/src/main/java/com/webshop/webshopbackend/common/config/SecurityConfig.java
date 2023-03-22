@@ -47,11 +47,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/user/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.PUT, "/user/**").hasAuthority(Role.ADMIN.name())
 
-                        .requestMatchers(HttpMethod.GET, "/building/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.POST, "/building/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.DELETE, "/building/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.PUT, "/building/**").hasAuthority(Role.ADMIN.name())
-
                         .requestMatchers(HttpMethod.POST, "/product/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.DELETE, "/product/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.PUT, "/product/**").hasAuthority(Role.ADMIN.name())

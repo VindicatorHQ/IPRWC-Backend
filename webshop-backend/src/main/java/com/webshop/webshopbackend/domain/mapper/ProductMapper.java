@@ -29,6 +29,7 @@ public class ProductMapper implements Mapper<Product, ProductDTO> {
         product.setDescription(productDTO.getDescription());
         product.setStock(productDTO.getStock());
         product.setPrice(productDTO.getPrice());
+        product.setCategory(productDTO.getCategory());
 
         return product;
     }
@@ -48,6 +49,7 @@ public class ProductMapper implements Mapper<Product, ProductDTO> {
         productDTO.setDescription(product.getDescription());
         productDTO.setStock(product.getStock());
         productDTO.setPrice(product.getPrice());
+        productDTO.setCategory(product.getCategory());
 
         return productDTO;
     }
