@@ -2,6 +2,7 @@ package com.webshop.webshopbackend.domain.DTO;
 
 import com.webshop.webshopbackend.domain.entity.Category;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -16,11 +17,12 @@ public class ProductDTO {
 
     private String description;
 
-    @NotBlank(message = "Product stock cannot be empty.")
+    @NotNull(message = "Product stock cannot be empty.")
     private int stock;
 
-    @NotBlank(message = "Product price cannot be empty.")
+    @NotNull(message = "Product price cannot be empty.")
     private double price;
 
-    private Category category;
+    @NotNull(message = "Category id cannot be empty.")
+    private String categoryId;
 }

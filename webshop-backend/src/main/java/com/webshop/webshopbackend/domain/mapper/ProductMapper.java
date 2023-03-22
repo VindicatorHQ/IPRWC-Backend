@@ -9,9 +9,11 @@ import org.springframework.stereotype.Component;
 public class ProductMapper implements Mapper<Product, ProductDTO> {
 
     private final ProductDAO productDAO;
+    private final CategoryMapper categoryMapper;
 
-    public ProductMapper(ProductDAO productDAO) {
+    public ProductMapper(ProductDAO productDAO, CategoryMapper categoryMapper) {
         this.productDAO = productDAO;
+        this.categoryMapper = categoryMapper;
     }
 
     @Override
@@ -23,13 +25,13 @@ public class ProductMapper implements Mapper<Product, ProductDTO> {
 
         Product product = new Product();
 
+        product.setCategory(categoryMapper.fromIdToEntity(productDTO.getCategoryId()));
         product.setId(productDTO.getId());
         product.setName(productDTO.getName());
         product.setImageName(productDTO.getImageName());
         product.setDescription(productDTO.getDescription());
         product.setStock(productDTO.getStock());
         product.setPrice(productDTO.getPrice());
-        product.setCategory(productDTO.getCategory());
 
         return product;
     }
@@ -43,13 +45,13 @@ public class ProductMapper implements Mapper<Product, ProductDTO> {
 
         ProductDTO productDTO = new ProductDTO();
 
+        productDTO.setCategoryId(product.getCategory().getId());
         productDTO.setId(product.getId());
         productDTO.setName(product.getName());
         productDTO.setImageName(product.getImageName());
         productDTO.setDescription(product.getDescription());
         productDTO.setStock(product.getStock());
         productDTO.setPrice(product.getPrice());
-        productDTO.setCategory(product.getCategory());
 
         return productDTO;
     }

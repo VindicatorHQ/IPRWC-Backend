@@ -31,12 +31,12 @@ public class ProductDAO implements DAO<Product> {
         Product product = this.productRepository.findById(id)
                 .orElseThrow(() -> new NotFound("Product", id));
 
+        product.setCategory(productRequest.getCategory());
         product.setName(productRequest.getName());
         product.setStock(productRequest.getStock());
         product.setPrice(productRequest.getPrice());
         product.setImageName(productRequest.getImageName());
         product.setDescription(productRequest.getDescription());
-        product.setCategory(productRequest.getCategory());
 
         return productRepository.save(product);
     }
