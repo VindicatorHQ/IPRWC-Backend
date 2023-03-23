@@ -31,8 +31,11 @@ public class OrderDAO implements DAO<Order> {
         Order order = this.orderRepository.findById(id)
                 .orElseThrow(() -> new NotFound("Order", id));
 
+        System.out.println(orderRequest);
+
         order.setDate(orderRequest.getDate());
         order.setUser(orderRequest.getUser());
+        order.setProduct(orderRequest.getProduct());
 
         return orderRepository.save(order);
     }

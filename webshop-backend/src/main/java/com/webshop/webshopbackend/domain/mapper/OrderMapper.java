@@ -13,10 +13,12 @@ public class OrderMapper implements Mapper<Order, OrderDTO> {
 
     private final OrderDAO orderDAO;
     private final UserMapper userMapper;
+    private final ProductMapper productMapper;
 
-    public OrderMapper(OrderDAO orderDAO, UserMapper userMapper) {
+    public OrderMapper(OrderDAO orderDAO, UserMapper userMapper, ProductMapper productMapper) {
         this.orderDAO = orderDAO;
         this.userMapper = userMapper;
+        this.productMapper = productMapper;
     }
 
     @Override
@@ -25,17 +27,21 @@ public class OrderMapper implements Mapper<Order, OrderDTO> {
             return null;
         }
 
+        System.out.println(orderDTO);
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         Order order = new Order();
 
-        order.setUser(userMapper.fromIdToEntity(orderDTO.getUserId()));
         order.setId(orderDTO.getId());
 
         String dateString = orderDTO.getDate();
         java.util.Date date = sdf.parse(dateString);
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         order.setDate(sqlDate);
+
+        order.setUser(userMapper.fromIdToEntity(orderDTO.getUserId()));
+        order.setProduct(productMapper.fromIdToEntity(orderDTO.getProductId()));
 
         return order;
     }
@@ -46,6 +52,8 @@ public class OrderMapper implements Mapper<Order, OrderDTO> {
             return null;
         }
 
+        System.out.println(order);
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         OrderDTO orderDTO = new OrderDTO();
@@ -53,6 +61,7 @@ public class OrderMapper implements Mapper<Order, OrderDTO> {
         orderDTO.setId(order.getId());
         orderDTO.setDate(sdf.format(order.getDate()));
         orderDTO.setUserId(order.getUser().getId());
+        orderDTO.setProductId(order.getProduct().getId());
 
         return orderDTO;
     }

@@ -12,6 +12,7 @@ public class GetOrderMapper implements Mapper<Order, GetOrderDTO> {
 
     private final OrderDAO orderDAO;
     private final UserMapper userMapper;
+    private final ProductMapper productMapper;
 
     @Override
     public Order fromDTOToEntity(GetOrderDTO orderDTO) {
@@ -21,9 +22,10 @@ public class GetOrderMapper implements Mapper<Order, GetOrderDTO> {
 
         Order order = new Order();
 
-        order.setUser(userMapper.fromIdToEntity(orderDTO.getUserId()));
         order.setId(orderDTO.getId());
         order.setDate(orderDTO.getDate());
+        order.setUser(userMapper.fromIdToEntity(orderDTO.getUserId()));
+        order.setProduct(productMapper.fromIdToEntity(orderDTO.getProductId()));
 
         return order;
     }
@@ -38,7 +40,8 @@ public class GetOrderMapper implements Mapper<Order, GetOrderDTO> {
 
         orderDTO.setId(order.getId());
         orderDTO.setDate(order.getDate());
-        orderDTO.setUsername(order.getUser().getName());
+        orderDTO.setUserId(order.getUser().getId());
+        orderDTO.setProductId(order.getProduct().getId());
 
         return orderDTO;
     }
