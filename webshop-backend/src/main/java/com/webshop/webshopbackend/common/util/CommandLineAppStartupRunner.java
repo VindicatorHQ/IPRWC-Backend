@@ -2,9 +2,11 @@ package com.webshop.webshopbackend.common.util;
 
 import com.google.common.hash.Hashing;
 import com.webshop.webshopbackend.domain.DAO.CategoryDAO;
+import com.webshop.webshopbackend.domain.DAO.OrderDAO;
 import com.webshop.webshopbackend.domain.DAO.ProductDAO;
 import com.webshop.webshopbackend.domain.DAO.UserDAO;
 import com.webshop.webshopbackend.domain.entity.Category;
+import com.webshop.webshopbackend.domain.entity.Order;
 import com.webshop.webshopbackend.domain.entity.Product;
 import com.webshop.webshopbackend.domain.entity.User;
 import com.webshop.webshopbackend.domain.model.Role;
@@ -23,6 +25,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private final UserDAO userDAO;
     private final CategoryDAO categoryDAO;
     private final ProductDAO productDAO;
+    private final OrderDAO productOrderDAO;
     private final BCryptPasswordEncoder passwordEncoder;
     @Value("${admin.name}")
     private String name;
@@ -71,11 +74,17 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                         .build()
                 );
 
+        Category category2 =
+                categoryDAO.saveToDatabase(Category.builder()
+                        .name("Oh no the Fard")
+                        .build()
+                );
+
         Product productMeme1 =
                 productDAO.saveToDatabase(Product.builder()
                         .name("Destroyer")
                         .description("Big bonky boi do be bonking you mama")
-                        .imageName("https://media.giphy.com/media/fIMushESr3iulAuSgZ/giphy.gif")
+                        .imageName("https://tenor.com/view/destroyer-destroy-angry-angry-panda-panda-gif-16909733.gif")
                         .stock(3)
                         .price(20.00)
                         .category(category1)
@@ -86,7 +95,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                 productDAO.saveToDatabase(Product.builder()
                         .name("Summoner")
                         .description("Summoning on deez nuts ha got em")
-                        .imageName("https://media.giphy.com/media/13CSvyHEOwoUM/giphy.gif")
+                        .imageName("https://tenor.com/view/doctor-doom-summoned-victor-von-doom-power-gif-15859330.gif")
                         .stock(69)
                         .price(5.00)
                         .category(category1)
@@ -97,7 +106,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                 productDAO.saveToDatabase(Product.builder()
                         .name("Scouter")
                         .description("Robot transform be like BZZZ BZZZ KABOOM LASAAAAH FIRING")
-                        .imageName("https://media.giphy.com/media/sJWNLTclcvVmw/giphy.gif")
+                        .imageName("https://tenor.com/view/dbz-vegeta-crush-scouter-over9000-gif-4896810.gif")
                         .stock(420)
                         .price(10.11)
                         .category(category1)
@@ -108,10 +117,80 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                 productDAO.saveToDatabase(Product.builder()
                         .name("Reaper")
                         .description("Deadge life be like")
-                        .imageName("https://media.giphy.com/media/Kxy2YUDnDrvdxVsVb8/giphy.gif")
+                        .imageName("https://tenor.com/view/meh-monday-morning-tired-coffee-break-gif-14544679.gif")
                         .stock(4)
                         .price(1.69)
                         .category(category1)
+                        .build()
+                );
+
+        Product productMeme5 =
+                productDAO.saveToDatabase(Product.builder()
+                        .name("Fard Gru")
+                        .description("Deadge life be like")
+                        .imageName("https://tenor.com/view/dr-nefario-despicable-me5-despicable-me-despicable-me1-despicable-me2-gif-22205201.gif")
+                        .stock(4)
+                        .price(1.69)
+                        .category(category2)
+                        .build()
+                );
+
+        Product productMeme6 =
+                productDAO.saveToDatabase(Product.builder()
+                        .name("Fard Robux")
+                        .description("Not those robux scammers again")
+                        .imageName("https://tenor.com/view/roblox-table-gif-22987765.gif")
+                        .stock(2)
+                        .price(3.69)
+                        .category(category2)
+                        .build()
+                );
+
+        Order productOrder1 =
+                productOrderDAO.saveToDatabase(Order.builder()
+                        .date(new java.sql.Date(2023-1900, 4, 30))
+                        .product(productMeme6)
+                        .user(johnDoe)
+                        .build()
+                );
+
+        Order productOrder2 =
+                productOrderDAO.saveToDatabase(Order.builder()
+                        .date(new java.sql.Date(2022-1900, 3, 30))
+                        .product(productMeme3)
+                        .user(johnDoe)
+                        .build()
+                );
+
+        Order productOrder3 =
+                productOrderDAO.saveToDatabase(Order.builder()
+                        .date(new java.sql.Date(2024-1900, 6, 30))
+                        .product(productMeme4)
+                        .user(johnDoe)
+                        .build()
+                );
+
+        Order productOrder4 =
+                productOrderDAO.saveToDatabase(Order.builder()
+                        .date(new java.sql.Date(2023-1900, 4, 30))
+                        .product(productMeme6)
+                        .user(admin)
+                        .build()
+                );
+
+        Order productOrder5 =
+                productOrderDAO.saveToDatabase(Order.builder()
+                        .date(new java.sql.Date(2022-1900, 3, 30))
+                        .product(productMeme3)
+                        .user(admin)
+                        .build()
+                );
+
+        Order productOrder6 =
+                productOrderDAO.saveToDatabase(Order.builder()
+                        .date(new java.sql.Date(2024-1900, 6, 30))
+                        .product(productMeme4)
+                        .user(admin)
                         .build()
                 );
     }

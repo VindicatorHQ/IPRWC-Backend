@@ -27,8 +27,6 @@ public class OrderMapper implements Mapper<Order, OrderDTO> {
             return null;
         }
 
-        System.out.println(orderDTO);
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         Order order = new Order();
@@ -51,8 +49,6 @@ public class OrderMapper implements Mapper<Order, OrderDTO> {
         if (order == null) {
             return null;
         }
-
-        System.out.println(order);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 

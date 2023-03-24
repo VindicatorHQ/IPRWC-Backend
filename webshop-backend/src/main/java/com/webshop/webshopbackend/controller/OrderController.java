@@ -26,7 +26,6 @@ public class OrderController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public OrderDTO createOrder(@RequestBody @Valid OrderDTO orderDTO) throws ParseException {
-        System.out.println(orderDTO);
         Order orderRequest = orderMapper.fromDTOToEntity(orderDTO);
         Order order = this.orderDAO.saveToDatabase(orderRequest);
 

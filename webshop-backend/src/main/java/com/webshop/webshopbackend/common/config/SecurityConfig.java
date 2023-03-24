@@ -40,6 +40,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/product/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/category/**").permitAll()
 
                         .requestMatchers(HttpMethod.GET, "/user/info").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
                         .requestMatchers(HttpMethod.GET, "/user/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
